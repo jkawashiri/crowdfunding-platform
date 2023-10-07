@@ -6,6 +6,7 @@ const campaignSchema = new Schema({
     description: {type: String, required: true},
     raiseGoal: {type: Number, required: true},
     closeDate: {type: Date, required: true},
+    moneyRaised: {type: Number, required: true, default: 0},
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

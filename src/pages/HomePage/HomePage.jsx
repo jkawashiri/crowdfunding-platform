@@ -10,6 +10,7 @@ export default function HomePage({campaigns, setCampaigns}) {
         }
         getCampaigns()
       }, [])
+
     return (
         <>
             {campaigns.map((campaign, idx) => (

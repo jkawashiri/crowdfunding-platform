@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate }  from 'react-router-dom';
 
 export default function NewCampaignForm({createCampaign}) {
     const [campaign, setCampaign] = useState({
@@ -7,6 +8,7 @@ export default function NewCampaignForm({createCampaign}) {
         raiseGoal: 0,
         closeDate: new Date().toISOString().slice(0, 10)
     })
+    const navigate = useNavigate()
 
     function handleForm(evt) {
         const value = evt.target.name === 'raiseGoal' ? parseFloat(evt.target.value) : evt.target.value
@@ -25,8 +27,9 @@ export default function NewCampaignForm({createCampaign}) {
             name: '',
             description: '',
             raiseGoal: 0,
-            closeDate: new Date()
+            closeDate: new Date().toISOString().slice(0, 10)
         })
+        navigate('/')
     }
     return (
         <form onSubmit={handleCreateCampaign}>
@@ -34,7 +37,7 @@ export default function NewCampaignForm({createCampaign}) {
                 <input type="text" name="name" onChange={handleForm} value={campaign.name} />
             </label>
             <label>Description: 
-                <textarea type="text" name="description" onChange={handleForm} value={campaign.description} />
+                <textarea name="description" onChange={handleForm} value={campaign.description} />
             </label>
             <label>Raise Goal:
                 <input type="number" name="raiseGoal" onChange={handleForm} value={campaign.raiseGoal} />
