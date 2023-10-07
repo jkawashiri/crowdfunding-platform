@@ -2,6 +2,7 @@ const Campaign = require('../../models/campaign');
 
 module.exports = {
     index,
+    show,
     create,
     update,
     delete: deleteCampaign
@@ -10,6 +11,11 @@ module.exports = {
 async function index(req, res,) {
     const campaigns = await Campaign.find()
     res.json(campaigns)
+}
+
+async function show(req, res) {
+    const campaign = await Campaign.findById(req.params.id)
+    res.json(campaign)
 }
 
 async function create(req, res) {
