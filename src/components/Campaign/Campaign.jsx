@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 
 export default function Campaign({campaign}) {
-    const formattedDate = new Date(campaign.closeDate).toLocaleDateString()
+    const [year, month, day] = campaign.closeDate.split('T')[0].split('-')
+    const formattedDate = `${month}/${day}/${year}`
     return (
         <>
             <Link to={`/campaigns/${campaign._id}`}>

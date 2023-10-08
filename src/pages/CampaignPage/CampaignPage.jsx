@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as campaignsAPI from '../../utilities/campaigns-api'
 import DeleteConfirmation from "../../components/DeleteConfirmation/DeleteConfirmation"
@@ -17,7 +17,8 @@ export default function CampaignPage({deleteCampaign}) {
         getCampaign()
     }, [id])
     if (!campaign) return 
-    const formattedDate = new Date(campaign.closeDate).toLocaleDateString()
+    const [year, month, day] = campaign.closeDate.split('T')[0].split('-')
+    const formattedDate = `${month}/${day}/${year}`
 
     async function handleDeleteCampaign() {
         await deleteCampaign(campaign._id)
@@ -35,7 +36,7 @@ export default function CampaignPage({deleteCampaign}) {
                 {campaign.raiseGoal}
                 {formattedDate}
             </div>
-            <button>Edit</button>
+            <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
             { deleteClicked ?
                 <button onClick={onDeleteClick}>Delete</button>
             :
