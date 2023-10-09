@@ -3,7 +3,7 @@ import CampaignDescription from "../CampaignDescription/CampaignDescription"
 import CampaignUpdates from "../CampaignUpdates/CampaignUpdates"
 import CampaignComments from "../CampaignComments/CampaignComments"
 
-export default function CampaignInfo({description}) {
+export default function CampaignInfo({description, addComment, comments, campaignId}) {
     return (
         <>
             <nav>
@@ -15,7 +15,7 @@ export default function CampaignInfo({description}) {
                 <Route path="/" element={<CampaignDescription description={description} />} index />
                 <Route path="description" element={<CampaignDescription description={description} />} />
                 <Route path="updates" element={<CampaignUpdates />} />
-                <Route path="comments" element={<CampaignComments />} />
+                <Route path="comments" element={<CampaignComments addComment={addComment} comments={comments} campaignId={campaignId} />} />
             </Routes>
         </>
     )

@@ -18,6 +18,7 @@ app.use(require('./config/checkToken'));
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/campaigns', require('./routes/api/campaigns'));
 app.use('/api/campaigns/:id/contributions', require('./routes/api/contributions'));
+app.use('/api/campaigns/:id/comments', require('./routes/api/comments'));
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));

@@ -2,6 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as campaignsAPI from '../../utilities/campaigns-api'
 import * as contributionsAPI from '../../utilities/contributions-api'
+import * as commentsAPI from '../../utilities/comments-api'
 import DeleteConfirmation from "../../components/DeleteConfirmation/DeleteConfirmation"
 import AddContributionForm from "../../components/AddContributionForm/AddContributionForm"
 import CampaignInfo from "../../components/CampaignInfo/CampaignInfo"
@@ -10,6 +11,7 @@ export default function CampaignPage({deleteCampaign}) {
     const [campaign, setCampaign] = useState(null)
     const [deleteClicked, setDeleteClicked] = useState(true)
     const [contributions, setContributions] = useState([])
+    const [comments, setComments] = useState([])
     const {id} = useParams()
     const navigate = useNavigate()
 
@@ -40,6 +42,14 @@ export default function CampaignPage({deleteCampaign}) {
         const updatedCampaign = await campaignsAPI.getById(campaignId)
         setCampaign(updatedCampaign)
     }
+
+    async function addComment(campaignId, comment) {
+        const newComment = await commentsAPI.createItem(campaignId, comment)
+        setComments([...comments, newComment])
+
+        const updatedCampaign = await campaignsAPI.getById(campaignId)
+        setCampaign(updatedCampaign)
+    }
     return (
         <>
             <h1>{campaign.name}</h1>
@@ -56,7 +66,7 @@ export default function CampaignPage({deleteCampaign}) {
                 <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
             }
             <AddContributionForm campaignId={campaign._id} addContribution={addContribution} />
-            <CampaignInfo campaignId={campaign._id} description={campaign.description} />
+            <CampaignInfo campaignId={campaign._id} description={campaign.description} addComment={addComment} comments={campaign.comments} />
         </>
     )
 }
