@@ -1,11 +1,14 @@
 import { useParams, useNavigate, Link } from "react-router-dom"
 import { useState, useEffect } from "react"
 import * as campaignsAPI from '../../utilities/campaigns-api'
+import * as contributionsAPI from '../../utilities/contributions-api'
 import DeleteConfirmation from "../../components/DeleteConfirmation/DeleteConfirmation"
+import AddContributionForm from "../../components/AddContributionForm/AddContributionForm"
 
 export default function CampaignPage({deleteCampaign}) {
     const [campaign, setCampaign] = useState(null)
     const [deleteClicked, setDeleteClicked] = useState(true)
+    const [contributions, setContributions] = useState([])
     const {id} = useParams()
     const navigate = useNavigate()
 
@@ -28,13 +31,23 @@ export default function CampaignPage({deleteCampaign}) {
     function onDeleteClick() {
         setDeleteClicked(deleteClicked => !deleteClicked)
     }
+
+    async function addContribution(campaignId, contribution) {
+        const newContribution = await contributionsAPI.createItem(campaignId, contribution)
+        setContributions([...contributions, newContribution])
+
+        const updatedCampaign = await campaignsAPI.getById(campaignId)
+        setCampaign(updatedCampaign)
+    }
     return (
         <>
             <h1>{campaign.name}</h1>
             <div>
                 {campaign.description}
-                {campaign.raiseGoal}
+                <div>{campaign.name} is looking to raise ${campaign.raiseGoal}</div>
                 {formattedDate}
+                <div>{campaign.name} has raised ${campaign.moneyRaised}</div>
+                {campaign.contributions.length} contributions have been made to this campaign!
             </div>
             <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
             { deleteClicked ?
@@ -42,6 +55,7 @@ export default function CampaignPage({deleteCampaign}) {
             :
                 <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
             }
+            <AddContributionForm campaignId={campaign._id} addContribution={addContribution} />
         </>
     )
 }
