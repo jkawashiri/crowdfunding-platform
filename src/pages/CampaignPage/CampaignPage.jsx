@@ -4,6 +4,7 @@ import * as campaignsAPI from '../../utilities/campaigns-api'
 import * as contributionsAPI from '../../utilities/contributions-api'
 import DeleteConfirmation from "../../components/DeleteConfirmation/DeleteConfirmation"
 import AddContributionForm from "../../components/AddContributionForm/AddContributionForm"
+import CampaignInfo from "../../components/CampaignInfo/CampaignInfo"
 
 export default function CampaignPage({deleteCampaign}) {
     const [campaign, setCampaign] = useState(null)
@@ -43,7 +44,6 @@ export default function CampaignPage({deleteCampaign}) {
         <>
             <h1>{campaign.name}</h1>
             <div>
-                {campaign.description}
                 <div>{campaign.name} is looking to raise ${campaign.raiseGoal}</div>
                 {formattedDate}
                 <div>{campaign.name} has raised ${campaign.moneyRaised}</div>
@@ -56,6 +56,7 @@ export default function CampaignPage({deleteCampaign}) {
                 <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
             }
             <AddContributionForm campaignId={campaign._id} addContribution={addContribution} />
+            <CampaignInfo campaignId={campaign._id} description={campaign.description} />
         </>
     )
 }

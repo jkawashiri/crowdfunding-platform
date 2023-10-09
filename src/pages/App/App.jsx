@@ -31,7 +31,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage campaigns={campaigns} setCampaigns={setCampaigns} />} />
             <Route path="/campaigns/new" element={<NewCampaignPage campaigns={campaigns} setCampaigns={setCampaigns} />} />
-            <Route path="/campaigns/:id" element={<CampaignPage deleteCampaign={deleteCampaign} />} />
+            <Route path="/campaigns/:id/*" element={<CampaignPage deleteCampaign={deleteCampaign} />} />
             <Route path="/campaigns/:id/edit" element={<EditCampaignPage editCampaign={editCampaign} />} />
           </Routes>
         </>
