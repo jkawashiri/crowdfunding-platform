@@ -83,7 +83,7 @@ export default function CampaignPage({deleteCampaign}) {
                 <div>{campaign.name} has raised ${campaign.moneyRaised}</div>
                 {campaign.contributions.length} contributions have been made to this campaign!
                 <div>{percentageToGoal}% funded</div>
-                <ProgressBar bgcolor="green" progress={`${percentageToGoal}`} height={10} />
+                <ProgressBar bgcolor="green" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} />
                 <div>{daysUntilClose} days to go</div>
             </div>
             <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
