@@ -84,7 +84,7 @@ export default function CampaignPage({deleteCampaign}) {
                 {campaign.contributions.length} contributions have been made to this campaign!
                 <div>{percentageToGoal}% funded</div>
                 <ProgressBar bgcolor="green" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} />
-                <div>{daysUntilClose} days to go</div>
+                <div>{daysUntilClose <= 0 ? 'Campaign is closed!' : `${daysUntilClose} days to go`}</div>
             </div>
             <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
             { deleteClicked ?
@@ -92,7 +92,7 @@ export default function CampaignPage({deleteCampaign}) {
             :
                 <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
             }
-            <AddContributionForm campaignId={campaign._id} addContribution={addContribution} />
+            <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} />
             <CampaignInfo 
                 campaignId={campaign._id} 
                 description={campaign.description} 

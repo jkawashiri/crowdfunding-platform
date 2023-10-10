@@ -1,8 +1,15 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
-export default function AddContributionForm({campaignId, addContribution}) {
+export default function AddContributionForm({campaignId, addContribution, daysUntilClose}) {
     const [contribution, setContribution] = useState({amount: 0})
     const [clicked, setClicked] = useState(true)
+    const [campaignClosed, setCampaignClosed] = useState(false)
+
+    useEffect(() => {
+        if (daysUntilClose <= 0) {
+            onCampaignClose()
+        }
+    }, [daysUntilClose])
 
     function handleForm(evt) {
         const value = evt.target.name === 'amount' ? parseFloat(evt.target.value) : evt.target.value
@@ -18,20 +25,26 @@ export default function AddContributionForm({campaignId, addContribution}) {
     function onClick() {
         setClicked(clicked => !clicked )
     }
+
+    function onCampaignClose() {
+        setCampaignClosed(true)
+    }
     return (
         <>
-            { clicked ?
-                <button onClick={onClick}>Contribute to this campaign!</button>
-            :
-                <>
+            { !campaignClosed && (
+                clicked ?
                     <button onClick={onClick}>Contribute to this campaign!</button>
-                    <form onSubmit={(evt) => {handleAddContribution(evt); onClick();}}>
-                        <label>Amount:</label>
-                            <input type="number" name="amount" onChange={handleForm} value={contribution.amount}></input>
-                        <button type="submit">Back this project!</button>
-                    </form>
-                </>
-            }
+                :
+                    <>
+                        <button onClick={onClick}>Contribute to this campaign!</button>
+                        <form onSubmit={(evt) => {handleAddContribution(evt); onClick();}}>
+                            <label>Amount:</label>
+                                <input type="number" name="amount" onChange={handleForm} value={contribution.amount}></input>
+                            <button type="submit">Back this project!</button>
+                        </form>
+                    </>
+                
+            )}
         </>
     )
 }
