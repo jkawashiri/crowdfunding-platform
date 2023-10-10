@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import * as campaignsAPI from '../../utilities/campaigns-api'
 import * as contributionsAPI from '../../utilities/contributions-api'
 import * as commentsAPI from '../../utilities/comments-api'
+import * as updatesAPI from '../../utilities/updates-api'
 import DeleteConfirmation from "../../components/DeleteConfirmation/DeleteConfirmation"
 import AddContributionForm from "../../components/AddContributionForm/AddContributionForm"
 import CampaignInfo from "../../components/CampaignInfo/CampaignInfo"
@@ -12,6 +13,7 @@ export default function CampaignPage({deleteCampaign}) {
     const [deleteClicked, setDeleteClicked] = useState(true)
     const [contributions, setContributions] = useState([])
     const [comments, setComments] = useState([])
+    const [updates, setUpdates] = useState([])
     const {id} = useParams()
     const navigate = useNavigate()
 
@@ -56,6 +58,14 @@ export default function CampaignPage({deleteCampaign}) {
         const updatedCampaign = await campaignsAPI.getById(campaignId)
         setCampaign(updatedCampaign)
     }
+
+    async function addUpdate(campaignId, update) {
+        const newUpdate = await updatesAPI.createItem(campaignId, update)
+        setUpdates([...updates, newUpdate])
+
+        const updatedCampaign = await campaignsAPI.getById(campaignId)
+        setCampaign(updatedCampaign)
+    }
     return (
         <>
             <h1>{campaign.name}</h1>
@@ -78,6 +88,8 @@ export default function CampaignPage({deleteCampaign}) {
                 addComment={addComment} 
                 comments={campaign.comments}
                 deleteComment={deleteComment}
+                addUpdate={addUpdate}
+                updates={campaign.updates}
             />
         </>
     )

@@ -1,6 +1,17 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+const updateSchema = new Schema({
+    update: {type: String, required: true},
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
+    }
+}, {
+    timestamps: true
+})
+
 const commentSchema = new Schema({
     comment: {type: String, required: true},
     user: {
@@ -32,6 +43,7 @@ const campaignSchema = new Schema({
     moneyRaised: {type: Number, required: true, default: 0},
     contributions: {type: [contributionSchema]},
     comments: {type: [commentSchema]},
+    updates: {type: [updateSchema]},
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
