@@ -25,8 +25,15 @@ export default function CampaignPage({deleteCampaign}) {
         getCampaign()
     }, [id])
     if (!campaign) return 
+
     const [year, month, day] = campaign.closeDate.split('T')[0].split('-')
     const formattedDate = `${month}/${day}/${year}`
+    const percentageToGoal = Math.round((campaign.moneyRaised / campaign.raiseGoal) * 100)
+
+    const currentDate = new Date()
+    const campaignCloseDate = new Date(campaign.closeDate)
+    const timeUntilClose = campaignCloseDate.getTime() - currentDate.getTime()
+    const daysUntilClose = Math.round(timeUntilClose / (1000 * 3600 * 24)) + 1
 
     async function handleDeleteCampaign() {
         await deleteCampaign(campaign._id)
@@ -74,6 +81,8 @@ export default function CampaignPage({deleteCampaign}) {
                 {formattedDate}
                 <div>{campaign.name} has raised ${campaign.moneyRaised}</div>
                 {campaign.contributions.length} contributions have been made to this campaign!
+                <div>{percentageToGoal}% funded</div>
+                <div>{daysUntilClose} days to go</div>
             </div>
             <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
             { deleteClicked ?
