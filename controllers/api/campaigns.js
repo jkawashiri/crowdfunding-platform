@@ -39,5 +39,5 @@ async function update(req, res) {
 
 async function deleteCampaign(req, res) {
     await Campaign.findByIdAndRemove(req.params.id)
-    res.json({message: "Note deleted successfully"})
+    res.json({message: "Campaign deleted successfully"})
 }

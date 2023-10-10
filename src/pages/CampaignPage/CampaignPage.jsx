@@ -50,6 +50,12 @@ export default function CampaignPage({deleteCampaign}) {
         const updatedCampaign = await campaignsAPI.getById(campaignId)
         setCampaign(updatedCampaign)
     }
+
+    async function deleteComment(campaignId, commentId) {
+        await commentsAPI.deleteItem(campaignId, commentId)
+        const updatedCampaign = await campaignsAPI.getById(campaignId)
+        setCampaign(updatedCampaign)
+    }
     return (
         <>
             <h1>{campaign.name}</h1>
@@ -66,7 +72,13 @@ export default function CampaignPage({deleteCampaign}) {
                 <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
             }
             <AddContributionForm campaignId={campaign._id} addContribution={addContribution} />
-            <CampaignInfo campaignId={campaign._id} description={campaign.description} addComment={addComment} comments={campaign.comments} />
+            <CampaignInfo 
+                campaignId={campaign._id} 
+                description={campaign.description} 
+                addComment={addComment} 
+                comments={campaign.comments}
+                deleteComment={deleteComment}
+            />
         </>
     )
 }
