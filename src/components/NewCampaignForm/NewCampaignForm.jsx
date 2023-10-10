@@ -1,12 +1,18 @@
 import { useState } from "react";
 import { useNavigate }  from 'react-router-dom';
 
+let date = new Date()
+let month = date.getMonth()
+let futureMonths = month + 3
+let defaultCloseDate = new Date(date)
+defaultCloseDate.setMonth(futureMonths)
+
 export default function NewCampaignForm({createCampaign}) {
     const [campaign, setCampaign] = useState({
         name: '',
         description: '',
         raiseGoal: 0,
-        closeDate: new Date().toISOString().slice(0, 10)
+        closeDate: new Date(defaultCloseDate).toISOString().slice(0, 10)
     })
     const navigate = useNavigate()
 

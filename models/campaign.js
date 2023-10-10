@@ -39,7 +39,18 @@ const campaignSchema = new Schema({
     name: {type: String, required: true},
     description: {type: String, required: true},
     raiseGoal: {type: Number, required: true},
-    closeDate: {type: Date, required: true},
+    closeDate: {
+        type: Date, 
+        required: true, 
+        default: function() {
+            let date = new Date()
+            let month = date.getMonth()
+            let futureMonths = month + 3
+            let defaultCloseDate = new Date(date)
+            defaultCloseDate.setMonth(futureMonths)
+            return defaultCloseDate
+        }
+    },
     moneyRaised: {type: Number, required: true, default: 0},
     contributions: {type: [contributionSchema]},
     comments: {type: [commentSchema]},
