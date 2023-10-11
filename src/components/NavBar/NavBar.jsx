@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import * as userService from '../../utilities/users-service'
 import { useState } from "react"
 import { MdSearch, MdOutlineCancel } from "react-icons/md"
+import './NavBar.css'
 
 export default function NavBar({user, setUser}) {
     const [search, setSearch] = useState('')
@@ -52,12 +53,13 @@ export default function NavBar({user, setUser}) {
         setUser(null)
     }
     return (
-        <nav>
-            <Link to="/">Home</Link>
-            &nbsp;&nbsp;<Link to="/campaigns/new">Create a Campaign</Link>
-            &nbsp;&nbsp;<span>Welcome, {user.name}</span>
-            &nbsp;&nbsp;<Link to="" onClick={ handleLogOut }>Log Out</Link>
-            &nbsp;&nbsp;
+        <nav className="navbar">
+            <Link to="/">
+                <div className="logo-container">
+                    <img src="https://i.imgur.com/g6fWUcj.png" height="200" width="200" style={{pointerEvents: 'none'}} />
+                </div>
+            </Link>
+            <Link to="/campaigns/new">Create a Campaign</Link>
             { clicked ?
                 <Link onClick={onClick}>Search <MdSearch /></Link>
             :
@@ -77,6 +79,8 @@ export default function NavBar({user, setUser}) {
                     )}
                 </>
             }
+            <span>Welcome, {user.name}</span>
+            <Link to="" onClick={ handleLogOut }>Log Out</Link>
         </nav>
     )
 }
