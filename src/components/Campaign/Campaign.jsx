@@ -5,12 +5,14 @@ export default function Campaign({campaign}) {
     const formattedDate = `${month}/${day}/${year}`
     return (
         <>
-            <Link to={`/campaigns/${campaign._id}`}>
-                {campaign.name}
-                {campaign.description}
-                {campaign.raiseGoal}
-                {formattedDate}
-            </Link>
+            <li>
+                <Link to={`/campaigns/${campaign._id}`}>
+                    {campaign.name}
+                    {campaign.description}
+                    {campaign.raiseGoal}
+                    {formattedDate}
+                </Link>
+            </li>
         </>
     )
 }   

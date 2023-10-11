@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import * as userService from '../../utilities/users-service'
 import { useState } from "react"
-import { MdSearch, MdOutlineCancel } from "react-icons/md"
+import { MdSearch, MdOutlineClose } from "react-icons/md"
 import './NavBar.css'
 
 export default function NavBar({user, setUser}) {
@@ -66,7 +66,7 @@ export default function NavBar({user, setUser}) {
                 <>
                     <input type="text" placeholder="Search for Campaigns" value={search} onChange={onChange} />
                     <button onClick={() => fetchSearchResults(search)}>Search</button>
-                    <Link onClick={onClick}><MdOutlineCancel /></Link>
+                    <Link onClick={onClick}><MdOutlineClose /></Link>
                     { showResults && ( 
                         results.length > 0 ?
                             <ul>
