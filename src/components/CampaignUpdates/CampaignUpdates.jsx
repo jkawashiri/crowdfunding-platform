@@ -3,7 +3,8 @@ import AddUpdateForm from "../AddUpdateForm/AddUpdateForm"
 import './CampaignUpdates.css'
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function CampaignUpdates({addUpdate, updates, campaignId}) {
+export default function CampaignUpdates({addUpdate, campaign, user}) {
+    const campaignUpdates = campaign.updates
     return (
         <>
             <AnimatePresence mode='wait'>
@@ -14,16 +15,20 @@ export default function CampaignUpdates({addUpdate, updates, campaignId}) {
                     transition={{ duration: 0.5 }}
                 >
                     <h1>Updates</h1>
-                    { updates.length > 0 ?
+                    { campaignUpdates.length > 0 ?
                         <ul className="updates-list">
-                            {updates.map((update, idx) => (
-                                <Update update={update} campaignId={campaignId} key={idx} />
+                            {campaignUpdates.map((update, idx) => (
+                                <Update update={update} campaignId={campaign._id} key={idx} />
                             ))}
                         </ul>
                     :
                         <h3>No Updates Yet!</h3>
                     }
-                    <AddUpdateForm addUpdate={addUpdate} campaignId={campaignId} />
+                    { user._id === campaign.user ?
+                        <AddUpdateForm addUpdate={addUpdate} campaignId={campaign._id} />
+                    :
+                        null          
+                    }
                 </motion.div>
             </AnimatePresence>
         </>

@@ -9,7 +9,7 @@ import AddContributionForm from "../../components/AddContributionForm/AddContrib
 import CampaignInfo from "../../components/CampaignInfo/CampaignInfo"
 import ProgressBar from "../../components/ProgressBar/ProgressBar"
 
-export default function CampaignPage({deleteCampaign}) {
+export default function CampaignPage({user, deleteCampaign}) {
     const [campaign, setCampaign] = useState(null)
     const [deleteClicked, setDeleteClicked] = useState(true)
     const [contributions, setContributions] = useState([])
@@ -93,14 +93,12 @@ export default function CampaignPage({deleteCampaign}) {
                 <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
             }
             <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} />
-            <CampaignInfo 
-                campaignId={campaign._id} 
-                description={campaign.description} 
+            <CampaignInfo  
+                campaign={campaign}
                 addComment={addComment} 
-                comments={campaign.comments}
                 deleteComment={deleteComment}
                 addUpdate={addUpdate}
-                updates={campaign.updates}
+                user={user}
             />
         </>
     )

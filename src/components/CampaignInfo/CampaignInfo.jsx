@@ -6,7 +6,7 @@ import CampaignComments from "../CampaignComments/CampaignComments"
 import './CampaignInfo.css'
 import { motion } from "framer-motion"
 
-export default function CampaignInfo({description, addComment, comments, campaignId, deleteComment, addUpdate, updates}) {
+export default function CampaignInfo({campaign, addComment, deleteComment, addUpdate, user}) {
     const [selectedTab, setSelectedTab] = useState('description')
     return (
         <>
@@ -51,10 +51,10 @@ export default function CampaignInfo({description, addComment, comments, campaig
                     </motion.div>
                 </nav>
                 <Routes>
-                    <Route path="/" element={<CampaignDescription description={description} />} index />
-                    <Route path="description" element={<CampaignDescription description={description} />} />
-                    <Route path="updates" element={<CampaignUpdates addUpdate={addUpdate} updates={updates} campaignId={campaignId} />} />
-                    <Route path="comments" element={<CampaignComments addComment={addComment} comments={comments} campaignId={campaignId} deleteComment={deleteComment} />} />
+                    <Route path="/" element={<CampaignDescription description={campaign.description} />} index />
+                    <Route path="description" element={<CampaignDescription description={campaign.description} />} />
+                    <Route path="updates" element={<CampaignUpdates addUpdate={addUpdate} campaign={campaign} user={user} />} />
+                    <Route path="comments" element={<CampaignComments addComment={addComment} comments={campaign.comments} campaignId={campaign._id} deleteComment={deleteComment} />} />
                 </Routes>
             </div>
         </div>
