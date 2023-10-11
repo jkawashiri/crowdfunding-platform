@@ -54,7 +54,7 @@ export default function CampaignInfo({campaign, addComment, deleteComment, addUp
                     <Route path="/" element={<CampaignDescription description={campaign.description} />} index />
                     <Route path="description" element={<CampaignDescription description={campaign.description} />} />
                     <Route path="updates" element={<CampaignUpdates addUpdate={addUpdate} campaign={campaign} user={user} />} />
-                    <Route path="comments" element={<CampaignComments addComment={addComment} comments={campaign.comments} campaignId={campaign._id} deleteComment={deleteComment} />} />
+                    <Route path="comments" element={<CampaignComments addComment={addComment} comments={campaign.comments} campaignId={campaign._id} deleteComment={deleteComment} user={user} />} />
                 </Routes>
             </div>
         </div>

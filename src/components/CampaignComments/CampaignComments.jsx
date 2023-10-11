@@ -3,7 +3,7 @@ import Comment from "../Comment/Comment"
 import './CampaignComments.css'
 import { motion, AnimatePresence } from "framer-motion"
 
-export default function CampaignComments({addComment, comments, campaignId, deleteComment}) {
+export default function CampaignComments({addComment, comments, campaignId, deleteComment, user}) {
     return (
         <>
             <AnimatePresence mode='wait'>
@@ -23,7 +23,11 @@ export default function CampaignComments({addComment, comments, campaignId, dele
                     :
                         <h3>No Comments Yet!</h3>
                     }
-                    <AddCommentForm addComment={addComment} campaignId={campaignId} />
+                    { user ?
+                        <AddCommentForm addComment={addComment} campaignId={campaignId} />
+                    :
+                        null
+                    }
                 </motion.div>
             </AnimatePresence>
         </>

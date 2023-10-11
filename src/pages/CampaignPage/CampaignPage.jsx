@@ -86,12 +86,20 @@ export default function CampaignPage({user, deleteCampaign}) {
                 <ProgressBar bgcolor="#1ed5c3" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} />
                 <div>{daysUntilClose <= 0 ? 'Campaign is closed!' : `${daysUntilClose} days to go`}</div>
             </div>
-            <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
-            { deleteClicked ?
-                <button onClick={onDeleteClick}>Delete</button>
+
+            { user._id === campaign.user ?
+                <>
+                    <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
+                    { deleteClicked ?
+                        <button onClick={onDeleteClick}>Delete</button>
+                    :
+                        <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
+                    }
+                </>
             :
-                <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
-            }
+                null
+            } 
+
             <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} />
             <CampaignInfo  
                 campaign={campaign}
