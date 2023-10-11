@@ -10,3 +10,13 @@
     justify-content: space-between;
     align-items: center;
 }
+
+.navbar > a {
+    text-decoration: none;
+    color: rgb(131, 131, 131);
+}
+
+.navbar > a:hover {
+    color: #5271FF;
+    transition: 0.3s;
+}

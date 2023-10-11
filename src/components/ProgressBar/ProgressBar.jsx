@@ -1,22 +1,28 @@
+import { motion } from "framer-motion"
+import './ProgressBar.css'
+
 export default function ProgressBar({bgcolor, progress, height}) {
     const Parentdiv = { 
         height: height, 
         width: '100%', 
         backgroundColor: 'whitesmoke', 
-        borderRadius: 40, 
-        margin: 50 
+        borderRadius: 40
       } 
       
       const Childdiv = { 
-        height: '100%', 
-        width: `${progress}%`, 
+        height: '100%',  
         backgroundColor: bgcolor, 
-       borderRadius:40, 
+        borderRadius: 40, 
         textAlign: 'right'
       } 
     return ( 
-    <div style={Parentdiv}> 
-      <div style={Childdiv} />
+    <div className="progress-bar" style={Parentdiv}> 
+        <motion.div 
+            style={Childdiv} 
+            initial={{width: 0}}
+            animate={{width: `${progress}%`}}
+            transition={{duration: 1, ease: 'easeOut'}}
+        />
     </div> 
     ) 
 }
