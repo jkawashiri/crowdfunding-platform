@@ -17,7 +17,7 @@ export default function CampaignComments({addComment, comments, campaignId, dele
                     { comments.length > 0 ?
                         <ul className="comments-list">
                             {comments.map((comment, idx) => (
-                                <Comment comment={comment} campaignId={campaignId} deleteComment={deleteComment} key={idx} />
+                                <Comment comment={comment} campaignId={campaignId} deleteComment={deleteComment} key={idx} user={user} />
                             ))}
                         </ul>
                     :

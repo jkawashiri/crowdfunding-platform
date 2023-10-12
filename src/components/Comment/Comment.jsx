@@ -1,4 +1,4 @@
-export default function Comment({comment, campaignId, deleteComment}) {
+export default function Comment({comment, campaignId, deleteComment, user}) {
     const formattedDate = new Date(comment.createdAt).toLocaleString()
     async function handleDeleteComment() {
         await deleteComment(campaignId, comment._id)
@@ -6,7 +6,11 @@ export default function Comment({comment, campaignId, deleteComment}) {
     return (
         <li>
             {comment.comment} - {comment.userName} - {formattedDate}
-            <button onClick={handleDeleteComment}>X</button>
+            { user && user._id === comment.user ?
+                <button onClick={handleDeleteComment}>X</button>
+            :
+                null
+            }
         </li>
     )
 }
