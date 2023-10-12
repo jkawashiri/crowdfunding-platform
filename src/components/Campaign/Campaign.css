@@ -3,4 +3,29 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    min-height: 20vmin;
+    min-width: 30vmin;
+    max-height: 20vmin;
+    max-width: 30vmin;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+    margin: 20px;
+    padding: 20px;
+}
+
+.campaign-name {
+    font-weight: bold;
+    font-size: 2.5vmin;
+}
+
+.campaign-percent {
+    color: #1ed5c3;
+    font-weight: bold;
+}
+
+.campaign-percent, .campaign-goal {
+    font-size: 1.75vmin;
 }

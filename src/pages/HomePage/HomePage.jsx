@@ -1,10 +1,38 @@
 import Campaign from "../../components/Campaign/Campaign"
 import * as campaignsAPI from '../../utilities/campaigns-api';
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import './HomePage.css'
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 export default function HomePage({campaigns, setCampaigns}) {
+    const [centerTrending, setCenterTrending] = useState(false)
+    const [centerRecentlyLaunched, setCenterRecentlyLaunched] = useState(false)
+    const [centerClosingSoon, setCenterClosingSoon] = useState(false)
+    const [centerClosedCampaigns, setCenterClosedCampaigns] = useState(false)
+    const [centerAllCampaigns, setCenterAllCampaigns] = useState(false)
+
+    const trendingRef = useRef(null)
+    const recentlyLaunchedRef = useRef(null)
+    const closingSoonRef = useRef(null)
+    const closedCampaignsRef = useRef(null)
+    const allCampaignRef = useRef(null)
+
+    useEffect(function() {
+        function checkOverflow(ref, setCenterState) {
+            if (ref.current && ref.current.scrollWidth <= ref.current.clientWidth) {
+                setCenterState(true)
+            } else {
+                setCenterState(false)
+            }
+        }
+
+        checkOverflow(trendingRef, setCenterTrending)
+        checkOverflow(recentlyLaunchedRef, setCenterRecentlyLaunched)
+        checkOverflow(closingSoonRef, setCenterClosingSoon)
+        checkOverflow(closedCampaignsRef, setCenterClosedCampaigns)
+        checkOverflow(allCampaignRef, setCenterAllCampaigns)
+    }, [campaigns])
+
     useEffect(function() {
         async function getCampaigns() {
           const campaigns = await campaignsAPI.getAll()
@@ -12,12 +40,6 @@ export default function HomePage({campaigns, setCampaigns}) {
         }
         getCampaigns()
     }, [])
-
-    const trendingRef = useRef(null)
-    const recentlyLaunchedRef = useRef(null)
-    const closingSoonRef = useRef(null)
-    const closedCampaignsRef = useRef(null)
-    const allCampaignRef = useRef(null)
 
     function slideLeft(sliderRef) {
         const slider = sliderRef.current
@@ -63,10 +85,10 @@ export default function HomePage({campaigns, setCampaigns}) {
     })
     return (
         <>
-            <h3>Trending Campaigns</h3>
+            <h3 className="category">Trending Campaigns</h3>
             <div className="campaign-list-container">
                 <MdChevronLeft className="arrow" onClick={() => slideLeft(trendingRef)} />
-                <div ref={trendingRef} className="campaign-horizontal-scroll">
+                <div ref={trendingRef} className={`campaign-horizontal-scroll ${centerTrending ? 'center-contents' : ''}`}>
                     {trendingCampaigns.map((campaign, idx) => (
                         <Campaign campaign={campaign} key={idx} />
                     ))}
@@ -74,10 +96,10 @@ export default function HomePage({campaigns, setCampaigns}) {
                 <MdChevronRight className="arrow" onClick={() => slideRight(trendingRef)} />
             </div>
 
-            <h3>Recently Launched</h3>
+            <h3 className="category">Recently Launched</h3>
             <div className="campaign-list-container">
                 <MdChevronLeft className="arrow" onClick={() => slideLeft(recentlyLaunchedRef)} />
-                <div ref={recentlyLaunchedRef} className="campaign-horizontal-scroll">
+                <div ref={recentlyLaunchedRef} className={`campaign-horizontal-scroll ${centerRecentlyLaunched ? 'center-contents' : ''}`}>
                     {recentlyLaunched.map((campaign, idx) => (
                         <Campaign campaign={campaign} key={idx} />
                     ))}
@@ -85,10 +107,10 @@ export default function HomePage({campaigns, setCampaigns}) {
                 <MdChevronRight className="arrow" onClick={() => slideRight(recentlyLaunchedRef)} />
             </div>
 
-            <h3>Closing Soon</h3>
+            <h3 className="category">Closing Soon</h3>
             <div className="campaign-list-container">
                 <MdChevronLeft className="arrow" onClick={() => slideLeft(closingSoonRef)} />
-                <div ref={closingSoonRef} className="campaign-horizontal-scroll">
+                <div ref={closingSoonRef} className={`campaign-horizontal-scroll ${centerClosingSoon ? 'center-contents' : ''}`}>
                     {closingSoon.map((campaign, idx) => (
                         <Campaign campaign={campaign} key={idx} />
                     ))}
@@ -96,10 +118,10 @@ export default function HomePage({campaigns, setCampaigns}) {
                 <MdChevronRight className="arrow" onClick={() => slideRight(closingSoonRef)} />
             </div>
 
-            <h3>Closed Campaigns</h3>
+            <h3 className="category">Closed Campaigns</h3>
             <div className="campaign-list-container">
                 <MdChevronLeft className="arrow" onClick={() => slideLeft(closedCampaignsRef)} />
-                <div ref={closedCampaignsRef} className="campaign-horizontal-scroll">
+                <div ref={closedCampaignsRef} className={`campaign-horizontal-scroll ${centerClosedCampaigns ? 'center-contents' : ''}`}>
                     {closedCampaigns.map((campaign, idx) => (
                         <Campaign campaign={campaign} key={idx} />
                     ))}
@@ -107,10 +129,10 @@ export default function HomePage({campaigns, setCampaigns}) {
                 <MdChevronRight className="arrow" onClick={() => slideRight(closedCampaignsRef)} />
             </div>
 
-            <h3>All Campaigns</h3>
+            <h3 className="category">All Campaigns</h3>
             <div className="campaign-list-container">
                 <MdChevronLeft className="arrow" onClick={() => slideLeft(allCampaignRef)} />
-                <div ref={allCampaignRef} className="campaign-horizontal-scroll">
+                <div ref={allCampaignRef} className={`campaign-horizontal-scroll ${centerAllCampaigns ? 'center-contents' : ''}`}>
                     {campaigns.map((campaign, idx) => (
                         <Campaign campaign={campaign} key={idx} />
                     ))}

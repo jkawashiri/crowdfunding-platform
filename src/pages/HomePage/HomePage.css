@@ -4,13 +4,10 @@
     white-space: nowrap;
     overflow-x: auto;
     scroll-behavior: smooth;
-    height: 20vmin;
+    height: 30vmin;
     width: 100vmin;
+    border: 1px solid lightgray;
     border-radius: 10px;
-    background: white;
-    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
-      0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
-      0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
 }
 
 .campaign-list-container {
@@ -31,4 +28,12 @@
 .arrow:hover {
     opacity: 100%;
     transition: 0.3s;
+}
+
+.category {
+    color: #5271FF;
+}
+
+.center-contents {
+    justify-content: center;
 }
