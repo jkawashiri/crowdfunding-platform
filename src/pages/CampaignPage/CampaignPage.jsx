@@ -87,7 +87,7 @@ export default function CampaignPage({user, deleteCampaign}) {
                 <div>{daysUntilClose <= 0 ? 'Campaign is closed!' : `${daysUntilClose} days to go`}</div>
             </div>
 
-            { user._id === campaign.user ?
+            { user && user._id === campaign.user ?
                 <>
                     <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
                     { deleteClicked ?
@@ -100,7 +100,7 @@ export default function CampaignPage({user, deleteCampaign}) {
                 null
             } 
 
-            <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} />
+            <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} user={user} />
             <CampaignInfo  
                 campaign={campaign}
                 addComment={addComment} 

@@ -59,7 +59,7 @@ export default function NavBar({user, setUser}) {
                     <img src="https://i.imgur.com/g6fWUcj.png" height="200" width="200" style={{pointerEvents: 'none'}} />
                 </div>
             </Link>
-            <Link to="/campaigns/new">Create a Campaign</Link>
+            <Link to={user ? "/campaigns/new" : "/auth"}>Create a Campaign</Link>
             { clicked ?
                 <Link onClick={onClick}>Search <MdSearch /></Link>
             :

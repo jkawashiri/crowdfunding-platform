@@ -24,7 +24,7 @@ export default function CampaignUpdates({addUpdate, campaign, user}) {
                     :
                         <h3>No Updates Yet!</h3>
                     }
-                    { user._id === campaign.user ?
+                    { user && user._id === campaign.user ?
                         <AddUpdateForm addUpdate={addUpdate} campaignId={campaign._id} />
                     :
                         null          

@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 
-export default function AddContributionForm({campaignId, addContribution, daysUntilClose}) {
+export default function AddContributionForm({campaignId, addContribution, daysUntilClose, user}) {
     const [contribution, setContribution] = useState({amount: 0})
     const [clicked, setClicked] = useState(true)
     const [campaignClosed, setCampaignClosed] = useState(false)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (daysUntilClose <= 0) {
@@ -23,7 +25,11 @@ export default function AddContributionForm({campaignId, addContribution, daysUn
     }
 
     function onClick() {
-        setClicked(clicked => !clicked )
+        if (!user) {
+            navigate('/auth')   
+        } else {
+            setClicked(clicked => !clicked )
+        }
     }
 
     function onCampaignClose() {

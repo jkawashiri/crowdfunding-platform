@@ -26,7 +26,7 @@ export default function CampaignComments({addComment, comments, campaignId, dele
                     { user ?
                         <AddCommentForm addComment={addComment} campaignId={campaignId} />
                     :
-                        null
+                        <div>Only logged in users can comment!</div>
                     }
                 </motion.div>
             </AnimatePresence>
