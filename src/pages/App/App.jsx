@@ -25,19 +25,16 @@ export default function App() {
   }
   return (
     <main className="App">
-      { user ?
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path="/auth" element={<AuthPage setUser={setUser} />} />
             <Route path="/" element={<HomePage campaigns={campaigns} setCampaigns={setCampaigns} />} />
             <Route path="/campaigns/new" element={<NewCampaignPage campaigns={campaigns} setCampaigns={setCampaigns} />} />
             <Route path="/campaigns/:id/*" element={<CampaignPage user={user} deleteCampaign={deleteCampaign} />} />
             <Route path="/campaigns/:id/edit" element={<EditCampaignPage editCampaign={editCampaign} />} />
           </Routes>
         </>
-        :
-        <AuthPage setUser={setUser} />
-      }
     </main>
   );
 }
