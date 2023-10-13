@@ -90,15 +90,8 @@ code {
   font-size: 2vmin;
 }
 
-.form-container {
-  padding: 3vmin;
-  background-color: var(--tan-1);
-  border: .1vmin solid var(--tan-3);
-  border-radius: 1vmin;
-}
-
 p.error-message {
-  color: var(--orange);
+  color: #5271FF;
   text-align: center;
 }
 
@@ -118,7 +111,7 @@ label {
 input {
   padding: 1vmin;
   font-size: 2vmin;
-  border: .1vmin solid var(--tan-3);
+  border: .1vmin solid lightgray;
   border-radius: .5vmin;
   color: var(--text-dark);
   background-image: none !important; /* prevent lastpass */
@@ -126,7 +119,7 @@ input {
 }
 
 input:focus {
-  border-color: var(--orange);
+  border-color: rgb(0, 84, 197);
 }
 
 button, a.button {

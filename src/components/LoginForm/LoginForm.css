@@ -1,0 +1,22 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    width: 50vmin;
+    min-height: 30vmin;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.login-input {
+    width: 30vmin;
+}
+
+.login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

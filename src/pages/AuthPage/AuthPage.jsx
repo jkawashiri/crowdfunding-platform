@@ -1,6 +1,8 @@
 import SignUpForm from "../../components/SignUpForm/SignUpForm"
 import LoginForm from "../../components/LoginForm/LoginForm"
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import './AuthPage.css'
 
 export default function AuthPage({setUser}) {
     const [clicked, setClicked] = useState(true)
@@ -15,7 +17,16 @@ export default function AuthPage({setUser}) {
             :
                 <h1>Sign Up</h1>
             }
-            <button onClick={onClick}>{buttonText}</button>
+
+            <div className="auth-form-switch">
+                { clicked === true ?
+                    <div>New to Jumpstarter?</div>
+                :
+                    <div>Already have an account?</div>
+                }
+                <Link onClick={onClick} className="form-switch-link">{buttonText}</Link>
+            </div>
+
             { clicked === true ? 
                 <LoginForm setUser={setUser} />
                 :

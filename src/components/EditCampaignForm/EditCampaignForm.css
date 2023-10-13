@@ -5,6 +5,10 @@
     align-items: center;
     width: fit-content;
     margin: 0 auto;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80vmin;
 }
 
 .form-input {

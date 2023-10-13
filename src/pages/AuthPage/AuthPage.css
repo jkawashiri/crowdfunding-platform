@@ -1,0 +1,16 @@
+.auth-form-switch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-switch-link {
+    color: #5271FF;
+    font-weight: bold;
+    margin-left: -15px;
+}
+
+.form-switch-link:hover {
+    color: #004aad;
+    transition: 0.3s;
+}

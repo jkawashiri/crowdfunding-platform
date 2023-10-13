@@ -1,6 +1,7 @@
 import { signUp } from "../../utilities/users-service";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './SignUpForm.css'
 
 export default function SignUpForm(props) {
     const [user, setUser] = useState({
@@ -35,20 +36,14 @@ export default function SignUpForm(props) {
         }
     }
         return (
-            <div>
-                <div className="form-container">
-                    <form autoComplete="off" onSubmit={handleSubmit}>
-                        <label>Name</label>
-                        <input type="text" name="name" value={user.name} onChange={handleChange} required />
-                        <label>Email</label>
-                        <input type="email" name="email" value={user.email} onChange={handleChange} required />
-                        <label>Password</label>
-                        <input type="password" name="password" value={user.password} onChange={handleChange} required />
-                        <label>Confirm</label>
-                        <input type="password" name="confirm" value={user.confirm} onChange={handleChange} required />
-                        <button type="submit" disabled={disable}>SIGN UP</button>
-                    </form>
-                </div>
+            <div className="signup-form-container">
+                <form autoComplete="off" onSubmit={handleSubmit} className="signup-form">
+                    <input type="text" name="name" placeholder="Name" value={user.name} onChange={handleChange} className="signup-input" required />
+                    <input type="email" name="email" placeholder="Email" value={user.email} onChange={handleChange} className="signup-input" required />
+                    <input type="password" name="password" placeholder="Password" value={user.password} onChange={handleChange} className="signup-input" required />
+                    <input type="password" name="confirm" placeholder="Confirm Password" value={user.confirm} onChange={handleChange} className="signup-input" required />
+                    <button type="submit" disabled={disable}>SIGN UP</button>
+                </form>
                 <p className="error-message">&nbsp;{user.error}</p>
             </div>
         );
