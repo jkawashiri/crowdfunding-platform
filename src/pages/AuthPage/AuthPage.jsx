@@ -10,7 +10,11 @@ export default function AuthPage({setUser}) {
     }
     return (
         <main>
-            <h1>AuthPage</h1>
+            { buttonText === 'Sign Up' ?
+                <h1>Log In</h1>
+            :
+                <h1>Sign Up</h1>
+            }
             <button onClick={onClick}>{buttonText}</button>
             { clicked === true ? 
                 <LoginForm setUser={setUser} />
