@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import './AddContributionForm.css'
 
 export default function AddContributionForm({campaignId, addContribution, daysUntilClose, user}) {
     const [contribution, setContribution] = useState({amount: 0})
@@ -43,11 +44,13 @@ export default function AddContributionForm({campaignId, addContribution, daysUn
                 :
                     <>
                         <button onClick={onClick}>Contribute to this campaign!</button>
-                        <form onSubmit={(evt) => {handleAddContribution(evt); onClick();}}>
-                            <label>Amount:</label>
+                        <div className="contribution-form-container">
+                            <form onSubmit={(evt) => {handleAddContribution(evt); onClick();}} className="contribution-form">
+                                <label>Amount:</label>
                                 <input type="number" name="amount" onChange={handleForm} value={contribution.amount}></input>
-                            <button type="submit">Back this project!</button>
-                        </form>
+                                <button type="submit">Back this project!</button>
+                            </form>
+                        </div>
                     </>
                 
             )}

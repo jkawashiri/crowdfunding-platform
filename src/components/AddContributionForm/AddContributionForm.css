@@ -1,0 +1,15 @@
+.contribution-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    width: 80vmin;
+}
+
+.contribution-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}

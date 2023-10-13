@@ -1,5 +1,6 @@
 import { useState } from "react"
 import './AddCommentForm.css'
+import { VscSend } from 'react-icons/vsc'
 
 export default function AddCommentForm({addComment, campaignId}) {
     const [comment, setComment] = useState({comment: ''})
@@ -15,8 +16,8 @@ export default function AddCommentForm({addComment, campaignId}) {
     }
     return (
         <form onSubmit={handleAddComment} className="comment-form">
-            <textarea name="comment" onChange={handleForm} value={comment.comment}></textarea>
-            <button type="submit" className="comment-button">Comment</button>
+            <textarea name="comment" onChange={handleForm} value={comment.comment} className="comment-box"></textarea>
+            <button type="submit" className="comment-button"> Post Comment <VscSend /></button>
         </form>
     )
 }

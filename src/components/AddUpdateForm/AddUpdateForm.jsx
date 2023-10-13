@@ -1,4 +1,6 @@
 import { useState } from "react"
+import './AddUpdateForm.css'
+import { VscSend } from 'react-icons/vsc'
 
 export default function AddUpdateForm({addUpdate, campaignId}) {
     const [update, setUpdate] = useState({update: ''})
@@ -13,9 +15,9 @@ export default function AddUpdateForm({addUpdate, campaignId}) {
         setUpdate({update: ''})
     }
     return (
-        <form onSubmit={handleAddUpdate}>
+        <form onSubmit={handleAddUpdate} className="update-form">
             <textarea name="update" onChange={handleForm} value={update.update}></textarea>
-            <button type="submit">Post Update</button>
+            <button type="submit">Post Update <VscSend /></button>
         </form>
     )
 }

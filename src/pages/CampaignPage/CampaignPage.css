@@ -24,3 +24,10 @@
     text-decoration: none;
     color: white;
 }
+
+.delete-confirmation-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}

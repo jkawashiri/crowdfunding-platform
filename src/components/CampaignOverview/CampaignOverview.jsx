@@ -11,9 +11,14 @@ export default function CampaignOverview({campaign, formattedDate, formattedRais
                     transition={{ duration: 0.5 }}
                 >
                     <h1>Overview</h1>
-                    <div>{campaign.description}</div>
-                    <div>Raise Goal: ${formattedRaiseGoal}</div>
-                    <div>Close Date: {formattedDate}</div>
+                    <div style={{fontWeight:'bold', fontSize:'2vmin'}}>
+                        Raise Goal: <span style={{color:'#10a275'}}>${formattedRaiseGoal}</span>
+                    </div>
+                    <div style={{fontWeight:'bold', fontSize:'2vmin'}}>
+                        Close Date: <span style={{color:'#ff6c6c'}}>{formattedDate}</span>
+                    </div>
+                    <br />
+                    <div style={{textAlign:'left', whiteSpace:'pre-line', paddingBottom:'20px'}}>{campaign.description}</div>
                 </motion.div>
             </AnimatePresence>
         </>

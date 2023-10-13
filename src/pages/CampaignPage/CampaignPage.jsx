@@ -109,7 +109,9 @@ export default function CampaignPage({user, deleteCampaign}) {
                             { deleteClicked ?
                                 <button onClick={onDeleteClick}>Delete</button>
                             :
-                                <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
+                                <div className="delete-confirmation-container">
+                                    <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} campaign={campaign} />
+                                </div>
                             }
                         </>
                     :

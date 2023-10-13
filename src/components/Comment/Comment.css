@@ -13,4 +13,21 @@
 
 .comment-item {
     margin-bottom: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    min-height: 10vmin;
+    width: 40vmin;
+    padding: 5px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.comment-body {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
 }

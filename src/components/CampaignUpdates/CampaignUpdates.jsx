@@ -18,7 +18,7 @@ export default function CampaignUpdates({addUpdate, campaign, user}) {
                     { campaignUpdates.length > 0 ?
                         <ul className="updates-list">
                             {campaignUpdates.map((update, idx) => (
-                                <Update update={update} campaignId={campaign._id} key={idx} />
+                                <Update update={update} campaignId={campaign._id} idx={idx} key={idx} />
                             ))}
                         </ul>
                     :
