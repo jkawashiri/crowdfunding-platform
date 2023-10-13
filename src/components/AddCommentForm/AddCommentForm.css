@@ -1,0 +1,11 @@
+.comment-button {
+    width: 100px;
+}
+
+.comment-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 0;
+}

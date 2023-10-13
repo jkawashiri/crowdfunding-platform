@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import './ProgressBar.css'
 
-export default function ProgressBar({bgcolor, progress, height}) {
+export default function ProgressBar({bgcolor, progress, height, percentageToGoal}) {
     const Parentdiv = { 
         height: height, 
         width: '100%', 
@@ -16,13 +16,16 @@ export default function ProgressBar({bgcolor, progress, height}) {
         textAlign: 'right'
       } 
     return ( 
-    <div className="progress-bar" style={Parentdiv}> 
-        <motion.div 
-            style={Childdiv} 
-            initial={{width: 0}}
-            animate={{width: `${progress}%`}}
-            transition={{duration: 1, ease: 'easeOut'}}
-        />
-    </div> 
+        <div className="progress-bar-container" >
+            <div className="progress-bar-percent">{percentageToGoal}% funded</div>
+            <div style={Parentdiv}> 
+                <motion.div 
+                    style={Childdiv} 
+                    initial={{width: 0}}
+                    animate={{width: `${progress}%`}}
+                    transition={{duration: 1, ease: 'easeOut'}}
+                />
+            </div> 
+        </div>
     ) 
 }

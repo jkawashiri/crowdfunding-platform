@@ -61,12 +61,12 @@ export default function NavBar({user, setUser}) {
             </Link>
             <Link to={user ? "/campaigns/new" : "/auth"}>Create a Campaign</Link>
             { clicked ?
-                <Link onClick={onClick}>Search <MdSearch /></Link>
+                <Link onClick={onClick}>Search <MdSearch className="search-icon" /></Link>
             :
                 <>
                     <input type="text" placeholder="Search for Campaigns" value={search} onChange={onChange} />
                     <button onClick={() => fetchSearchResults(search)}>Search</button>
-                    <Link onClick={onClick}><MdOutlineClose /></Link>
+                    <Link onClick={onClick}><MdOutlineClose className="close-icon" /></Link>
                     { showResults && ( 
                         results.length > 0 ?
                             <ul>

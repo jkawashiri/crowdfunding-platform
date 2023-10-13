@@ -20,3 +20,8 @@
     color: #5271FF;
     transition: 0.3s;
 }
+
+.search-icon, .close-icon {
+    height: 20px;
+    width: 20px;
+}

@@ -1,4 +1,5 @@
 import { useState } from "react"
+import './AddCommentForm.css'
 
 export default function AddCommentForm({addComment, campaignId}) {
     const [comment, setComment] = useState({comment: ''})
@@ -13,9 +14,9 @@ export default function AddCommentForm({addComment, campaignId}) {
         setComment({comment: ''})
     }
     return (
-        <form onSubmit={handleAddComment}>
+        <form onSubmit={handleAddComment} className="comment-form">
             <textarea name="comment" onChange={handleForm} value={comment.comment}></textarea>
-            <button type="submit">Comment</button>
+            <button type="submit" className="comment-button">Comment</button>
         </form>
     )
 }

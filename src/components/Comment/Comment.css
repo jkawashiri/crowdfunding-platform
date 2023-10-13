@@ -1,0 +1,16 @@
+.delete-comment {
+    height: 20px;
+    width: 20px;
+    opacity: 50%;
+    cursor: pointer;
+}
+
+.delete-comment:hover {
+    color: #5271FF;
+    opacity: 100%;
+    transition: 0.3s;
+}
+
+.comment-item {
+    margin-bottom: 20px;
+}

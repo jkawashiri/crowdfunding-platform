@@ -1,13 +1,16 @@
+import './Comment.css'
+import { MdOutlineClose } from 'react-icons/md'
+
 export default function Comment({comment, campaignId, deleteComment, user}) {
     const formattedDate = new Date(comment.createdAt).toLocaleString()
     async function handleDeleteComment() {
         await deleteComment(campaignId, comment._id)
     }
     return (
-        <li>
+        <li className="comment-item">
             {comment.comment} - {comment.userName} - {formattedDate}
             { user && user._id === comment.user ?
-                <button onClick={handleDeleteComment}>X</button>
+                <MdOutlineClose onClick={handleDeleteComment} className='delete-comment' />
             :
                 null
             }

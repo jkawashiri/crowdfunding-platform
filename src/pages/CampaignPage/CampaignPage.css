@@ -1,0 +1,21 @@
+.campaign-page-name, .campaign-page-raised, .campaign-page-goal {
+    font-weight: bold;
+}
+
+.campaign-page-raised {
+    color: #1ed5c3;
+}
+
+.campaign-page-goal {
+    color: #10a275;
+}
+
+.countdown-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.time-close-message {
+    margin-bottom: 20px;
+    font-size: 20px;
+}

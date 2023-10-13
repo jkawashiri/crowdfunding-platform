@@ -8,6 +8,8 @@ import DeleteConfirmation from "../../components/DeleteConfirmation/DeleteConfir
 import AddContributionForm from "../../components/AddContributionForm/AddContributionForm"
 import CampaignInfo from "../../components/CampaignInfo/CampaignInfo"
 import ProgressBar from "../../components/ProgressBar/ProgressBar"
+import './CampaignPage.css'
+import { PiClockCountdown } from "react-icons/pi"
 
 export default function CampaignPage({user, deleteCampaign}) {
     const [campaign, setCampaign] = useState(null)
@@ -35,6 +37,9 @@ export default function CampaignPage({user, deleteCampaign}) {
     const campaignCloseDate = new Date(campaign.closeDate)
     const timeUntilClose = campaignCloseDate.getTime() - currentDate.getTime()
     const daysUntilClose = Math.round(timeUntilClose / (1000 * 3600 * 24)) + 1
+
+    const formattedRaiseGoal = campaign.raiseGoal.toLocaleString()
+    const formattedMoneyRaised = campaign.moneyRaised.toLocaleString()
 
     async function handleDeleteCampaign() {
         await deleteCampaign(campaign._id)
@@ -78,13 +83,22 @@ export default function CampaignPage({user, deleteCampaign}) {
         <>
             <h1>{campaign.name}</h1>
             <div>
-                <div>{campaign.name} is looking to raise ${campaign.raiseGoal}</div>
-                {formattedDate}
-                <div>{campaign.name} has raised ${campaign.moneyRaised}</div>
+                <div>
+                    <span className="campaign-page-name">{campaign.name}</span> has raised
+                    <span className="campaign-page-raised"> ${formattedMoneyRaised}</span> of their 
+                    <span className="campaign-page-goal"> ${formattedRaiseGoal} goal</span>
+                </div>
                 {campaign.contributions.length} contributions have been made to this campaign!
-                <div>{percentageToGoal}% funded</div>
-                <ProgressBar bgcolor="#1ed5c3" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} />
-                <div>{daysUntilClose <= 0 ? 'Campaign is closed!' : `${daysUntilClose} days to go`}</div>
+                <ProgressBar bgcolor="#1ed5c3" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} percentageToGoal={percentageToGoal} />
+                <div className="time-close-message">
+                    {daysUntilClose <= 0 ? 
+                        'Campaign is closed!' 
+                    : 
+                        <>
+                            {daysUntilClose} days to go <PiClockCountdown className="countdown-icon" />
+                        </>
+                    }       
+                </div>
             </div>
 
             { user && user._id === campaign.user ?
@@ -107,6 +121,8 @@ export default function CampaignPage({user, deleteCampaign}) {
                 deleteComment={deleteComment}
                 addUpdate={addUpdate}
                 user={user}
+                formattedDate={formattedDate}
+                formattedRaiseGoal={formattedRaiseGoal}
             />
         </>
     )

@@ -1,13 +1,13 @@
 import { Link, Routes, Route } from "react-router-dom"
 import { useState } from "react"
-import CampaignDescription from "../CampaignDescription/CampaignDescription"
+import CampaignOverview from "../CampaignOverview/CampaignOverview"
 import CampaignUpdates from "../CampaignUpdates/CampaignUpdates"
 import CampaignComments from "../CampaignComments/CampaignComments"
 import './CampaignInfo.css'
 import { motion } from "framer-motion"
 
-export default function CampaignInfo({campaign, addComment, deleteComment, addUpdate, user}) {
-    const [selectedTab, setSelectedTab] = useState('description')
+export default function CampaignInfo({campaign, addComment, deleteComment, addUpdate, user, formattedDate, formattedRaiseGoal}) {
+    const [selectedTab, setSelectedTab] = useState('overview')
     return (
         <>
         <div className="window-container">
@@ -15,12 +15,12 @@ export default function CampaignInfo({campaign, addComment, deleteComment, addUp
                 <nav>
                     <motion.div layout>
                         <Link 
-                            to={`description`} 
-                            className={selectedTab === 'description' ? 'selected' : ''} 
-                            onClick={() => setSelectedTab('description')}
+                            to={`overview`} 
+                            className={selectedTab === 'overview' ? 'selected' : ''} 
+                            onClick={() => setSelectedTab('overview')}
                         >
-                            Description
-                            {selectedTab === 'description' ? (
+                            Overview
+                            {selectedTab === 'overview' ? (
                                 <motion.div className="underline" layoutId="underline" />
                             ) : null}
                         </Link>
@@ -51,8 +51,8 @@ export default function CampaignInfo({campaign, addComment, deleteComment, addUp
                     </motion.div>
                 </nav>
                 <Routes>
-                    <Route path="/" element={<CampaignDescription description={campaign.description} />} index />
-                    <Route path="description" element={<CampaignDescription description={campaign.description} />} />
+                    <Route path="/" element={<CampaignOverview campaign={campaign} formattedDate={formattedDate} formattedRaiseGoal={formattedRaiseGoal} />} index />
+                    <Route path="overview" element={<CampaignOverview campaign={campaign} formattedDate={formattedDate} formattedRaiseGoal={formattedRaiseGoal} />} />
                     <Route path="updates" element={<CampaignUpdates addUpdate={addUpdate} campaign={campaign} user={user} />} />
                     <Route path="comments" element={<CampaignComments addComment={addComment} comments={campaign.comments} campaignId={campaign._id} deleteComment={deleteComment} user={user} />} />
                 </Routes>
