@@ -8,7 +8,7 @@ export default function NewCampaignPage({campaigns, setCampaigns}) {
     }
     return (
         <>
-            <h1>NewCampaignPage</h1>
+            <h2>Create your new Campaign!</h2>
             <NewCampaignForm createCampaign={createCampaign} />
         </>
     )

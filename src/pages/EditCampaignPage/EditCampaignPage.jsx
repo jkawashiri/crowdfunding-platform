@@ -16,6 +16,9 @@ export default function EditCampaignPage({editCampaign}) {
     }, [id])
     if (!campaign) return 
     return (
-        <EditCampaignForm campaign={campaign} editCampaign={editCampaign} />
+        <>
+            <h2>Edit <span style={{color: '#5271FF'}}>{campaign.name}</span></h2>
+            <EditCampaignForm campaign={campaign} editCampaign={editCampaign} />
+        </>
     )
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate }  from 'react-router-dom';
+import './NewCampaignForm.css'
 
 let date = new Date()
 let month = date.getMonth()
@@ -38,19 +39,17 @@ export default function NewCampaignForm({createCampaign}) {
         navigate('/')
     }
     return (
-        <form onSubmit={handleCreateCampaign}>
-            <label>Name: 
-                <input type="text" name="name" onChange={handleForm} value={campaign.name} />
-            </label>
-            <label>Description: 
-                <textarea name="description" onChange={handleForm} value={campaign.description} />
-            </label>
-            <label>Raise Goal:
-                <input type="number" name="raiseGoal" onChange={handleForm} value={campaign.raiseGoal} />
-            </label>
-            <label>Close Date:
-                <input type="date" name="closeDate" onChange={handleForm} value={campaign.closeDate} />
-            </label>
+        <form onSubmit={handleCreateCampaign} className="create-form">
+            <div>
+                <label>Name:</label>
+                <input type="text" name="name" onChange={handleForm} value={campaign.name} className="form-input" />
+                <label>Description:</label>
+                <textarea name="description" onChange={handleForm} value={campaign.description} className="form-input" />
+                <label>Raise Goal:</label>
+                <input type="number" name="raiseGoal" onChange={handleForm} value={campaign.raiseGoal} className="form-input" />
+                <label>Close Date:</label>
+                <input type="date" name="closeDate" onChange={handleForm} value={campaign.closeDate} className="form-input" />
+            </div>
             <button type="submit">Create Campaign</button>
         </form>
     )

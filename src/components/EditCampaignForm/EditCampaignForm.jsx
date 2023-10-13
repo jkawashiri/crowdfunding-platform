@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './EditCampaignForm.css'
 
 export default function EditCampaignForm({campaign, editCampaign}) {
     const [updatedCampaign, setUpdatedCampaign] = useState({
@@ -43,22 +44,22 @@ export default function EditCampaignForm({campaign, editCampaign}) {
     }
     return (
         <>
-            <form onSubmit={handleEditCampaign}>
-                <label>Name: 
-                    <input type="text" name="name" onChange={handleForm} value={updatedCampaign.name} />
-                </label>
-                <label>Description: 
-                    <textarea name="description" onChange={handleForm} value={updatedCampaign.description} />
-                </label>
-                <label>Raise Goal:
-                    <input type="number" name="raiseGoal" onChange={handleForm} value={updatedCampaign.raiseGoal} />
-                </label>
-                <label>Close Date:
-                    <input type="date" name="closeDate" onChange={handleForm} value={updatedCampaign.closeDate} />
-                </label>
-                <button type="submit">Save Campaign</button>
+            <form onSubmit={handleEditCampaign} className="edit-form">
+                <div>
+                    <label>Name:</label>
+                    <input type="text" name="name" onChange={handleForm} value={updatedCampaign.name} className="form-input" />
+                    <label>Description:</label>
+                    <textarea name="description" onChange={handleForm} value={updatedCampaign.description} className="form-input" />
+                    <label>Raise Goal:</label>
+                    <input type="number" name="raiseGoal" onChange={handleForm} value={updatedCampaign.raiseGoal} className="form-input" />
+                    <label>Close Date:</label>
+                    <input type="date" name="closeDate" onChange={handleForm} value={updatedCampaign.closeDate} className="form-input" />
+                </div>
+                <div>
+                    <button type="submit">Save Campaign</button>
+                    <button onClick={handleCancel}>Cancel</button>
+                </div>
             </form>
-            <button onClick={handleCancel}>Cancel</button>
         </>
     )
 }

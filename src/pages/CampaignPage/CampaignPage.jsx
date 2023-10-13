@@ -100,21 +100,25 @@ export default function CampaignPage({user, deleteCampaign}) {
                     }       
                 </div>
             </div>
-
-            { user && user._id === campaign.user ?
-                <>
-                    <button><Link to={`/campaigns/${campaign._id}/edit`}>Edit</Link></button>
-                    { deleteClicked ?
-                        <button onClick={onDeleteClick}>Delete</button>
+            
+            <div>  
+                <div>
+                    { user && user._id === campaign.user ?
+                        <>
+                            <button><Link to={`/campaigns/${campaign._id}/edit`} className="edit-button">Edit</Link></button>
+                            { deleteClicked ?
+                                <button onClick={onDeleteClick}>Delete</button>
+                            :
+                                <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
+                            }
+                        </>
                     :
-                        <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} />
-                    }
-                </>
-            :
-                null
-            } 
-
-            <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} user={user} />
+                        null
+                    } 
+                </div>
+                <AddContributionForm campaignId={campaign._id} addContribution={addContribution} daysUntilClose={daysUntilClose} user={user} />
+            </div>
+    
             <CampaignInfo  
                 campaign={campaign}
                 addComment={addComment} 
