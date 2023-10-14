@@ -112,7 +112,7 @@ export default function SearchBar() {
                             results.length > 0 ?
                                 <ul className="search-results">
                                     {results.map((campaign, idx) => (
-                                        <SearchResult campaign={campaign} key={idx} />
+                                        <SearchResult campaign={campaign} key={idx} onClick={onClick} />
                                     ))}
                                 </ul>
                             : 

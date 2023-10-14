@@ -89,7 +89,7 @@ export default function CampaignPage({user, deleteCampaign}) {
                     <span className="campaign-page-goal"> ${formattedRaiseGoal} goal</span>
                 </div>
                 {campaign.contributions.length} contributions have been made to this campaign!
-                <ProgressBar bgcolor="#1ed5c3" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} percentageToGoal={percentageToGoal} />
+                <ProgressBar key={campaign._id} bgcolor="#1ed5c3" progress={percentageToGoal > 100 ? 100 : percentageToGoal} height={10} percentageToGoal={percentageToGoal} />
                 <div className="time-close-message">
                     {daysUntilClose <= 0 ? 
                         'Campaign is closed!' 
