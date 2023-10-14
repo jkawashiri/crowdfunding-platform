@@ -12,9 +12,9 @@
     position: relative;
 }
 
-.navbar > a {
+.navbar-section > a {
     text-decoration: none;
-    color: rgb(131, 131, 131);
+    color: gray;
 }
 
 .navbar > a:hover {
@@ -22,3 +22,16 @@
     transition: 0.3s;
 }
 
+.navbar-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-line {
+    border-left: 1px solid lightgray;
+    height: 40px;
+    margin: 0;
+    margin-left: -5px;
+    padding: 0;
+}
