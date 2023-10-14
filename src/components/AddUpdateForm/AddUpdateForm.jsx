@@ -17,7 +17,7 @@ export default function AddUpdateForm({addUpdate, campaignId}) {
     return (
         <form onSubmit={handleAddUpdate} className="update-form">
             <textarea name="update" onChange={handleForm} value={update.update}></textarea>
-            <button type="submit">Post Update <VscSend /></button>
+            <button type="submit" className="form-button">Post Update <VscSend size={20} style={{marginLeft:"5px"}} /></button>
         </form>
     )
 }

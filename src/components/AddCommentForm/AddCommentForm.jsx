@@ -17,7 +17,7 @@ export default function AddCommentForm({addComment, campaignId}) {
     return (
         <form onSubmit={handleAddComment} className="comment-form">
             <textarea name="comment" onChange={handleForm} value={comment.comment} className="comment-box"></textarea>
-            <button type="submit" className="comment-button"> Post Comment <VscSend /></button>
+            <button type="submit" className="form-button"> Post Comment <VscSend size={20} style={{marginLeft:"5px"}} /></button>
         </form>
     )
 }

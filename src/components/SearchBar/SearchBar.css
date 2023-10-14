@@ -3,20 +3,28 @@
     width: 20px;
 }
 
+.search-icon {
+    margin-left: 5px;
+}
+
 .search-bar {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
 .search-input {
     border: none;
+    width: 100%;
 }
 
 .search-container {
-    border: 1px solid lightgray;
-    border-radius: 10px;
+    border-bottom: 1px solid lightgray;
     overflow: hidden;
+    position: absolute;
+    z-index: 1000;
+    background-color: white;
+    top: 0;
 }
 
 .spinner-container {
@@ -35,4 +43,10 @@
 .search-results-container {
     max-height: 250px;
     overflow-y: auto;
+}
+
+.search-label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

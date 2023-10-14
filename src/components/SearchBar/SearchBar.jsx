@@ -34,10 +34,12 @@ export default function SearchBar() {
 
     const containerVariants = {
         expanded: {
-            height: "20em"
+            height: "20em",
+            width: "100%"
         },
         collapsed: {
-            height: "100%"
+            height: "100%",
+            width: "100%"
         }
     }
 
@@ -86,17 +88,17 @@ export default function SearchBar() {
     return (
         <>
             { clicked ?
-                <Link onClick={onClick}>Search <MdSearch className="search-icon" /></Link>
+                <Link onClick={onClick} className="search-label">Search <MdSearch className="search-icon" /></Link>
             :
                 <motion.div 
                     animate={expanded ? "expanded" : "collapsed"} 
                     variants={containerVariants} 
                     transition={containerTransition} 
                     ref={ref}
-                    style={{transformOrigin: "top"}}
                     className="search-container"
                 >
                     <div className="search-bar">
+                        <MdSearch size={20} style={{color:"gray"}} />
                         <input className="search-input" type="text" placeholder="Search for Campaigns" value={search} onChange={onChange} onFocus={expandContainer} />
                         <Link onClick={() => {onClick(); collapseContainer();}}><MdOutlineClose className="close-icon" /></Link>
                     </div>
