@@ -112,7 +112,7 @@ export default function DiscoverPage({campaigns, setCampaigns}) {
                     </div>
                 :
                     <div style={{fontSize:"3vmin"}}>
-                        No results found for <span style={{color:"#5271FF", fontWeight:"bold"}}>{selectedCategory}</span>
+                        No results found for <span style={{color:"#5271FF", fontWeight:"bold"}}>{selectedCategory}</span> Campaigns
                     </div>
                 }
             </div>

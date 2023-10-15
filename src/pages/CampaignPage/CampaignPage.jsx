@@ -94,9 +94,10 @@ export default function CampaignPage({user, deleteCampaign}) {
                     {daysUntilClose <= 0 ? 
                         'Campaign is closed!' 
                     : 
-                        <>
-                            {daysUntilClose} days to go <PiClockCountdown className="countdown-icon" />
-                        </>
+                        <div className="countdown-container">
+                            <div>{daysUntilClose} days to go</div> 
+                            <PiClockCountdown className="countdown-icon" />
+                        </div>
                     }       
                 </div>
             </div>
