@@ -31,3 +31,9 @@
     align-items: center;
     margin-bottom: 20px;
 }
+
+.edit-delete-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

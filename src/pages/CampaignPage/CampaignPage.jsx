@@ -104,8 +104,8 @@ export default function CampaignPage({user, deleteCampaign}) {
             <div>  
                 <div>
                     { user && user._id === campaign.user ?
-                        <>
-                            <button><Link to={`/campaigns/${campaign._id}/edit`} className="edit-button">Edit</Link></button>
+                        <div className={deleteClicked ? "edit-delete-container" : ""}>
+                            <Link to={`/campaigns/${campaign._id}/edit`} className="edit-button"><button>Edit</button></Link>
                             { deleteClicked ?
                                 <button onClick={onDeleteClick}>Delete</button>
                             :
@@ -113,7 +113,7 @@ export default function CampaignPage({user, deleteCampaign}) {
                                     <DeleteConfirmation handleDeleteCampaign={handleDeleteCampaign} onDeleteClick={onDeleteClick} campaign={campaign} />
                                 </div>
                             }
-                        </>
+                        </div>
                     :
                         null
                     } 

@@ -8,14 +8,10 @@ export default function HomePage({campaigns, setCampaigns}) {
     const [centerTrending, setCenterTrending] = useState(false)
     const [centerRecentlyLaunched, setCenterRecentlyLaunched] = useState(false)
     const [centerClosingSoon, setCenterClosingSoon] = useState(false)
-    const [centerClosedCampaigns, setCenterClosedCampaigns] = useState(false)
-    const [centerAllCampaigns, setCenterAllCampaigns] = useState(false)
 
     const trendingRef = useRef(null)
     const recentlyLaunchedRef = useRef(null)
     const closingSoonRef = useRef(null)
-    const closedCampaignsRef = useRef(null)
-    const allCampaignRef = useRef(null)
 
     useEffect(function() {
         function checkOverflow(ref, setCenterState) {
@@ -29,8 +25,6 @@ export default function HomePage({campaigns, setCampaigns}) {
         checkOverflow(trendingRef, setCenterTrending)
         checkOverflow(recentlyLaunchedRef, setCenterRecentlyLaunched)
         checkOverflow(closingSoonRef, setCenterClosingSoon)
-        checkOverflow(closedCampaignsRef, setCenterClosedCampaigns)
-        checkOverflow(allCampaignRef, setCenterAllCampaigns)
     }, [campaigns])
 
     useEffect(function() {
@@ -70,8 +64,6 @@ export default function HomePage({campaigns, setCampaigns}) {
         thirtyDaysFromNow.setDate(today.getDate() + 30)
         return dateClosed >= today && dateClosed <= thirtyDaysFromNow
     })
-
-    const closedCampaigns = campaigns.filter((campaign) => new Date(campaign.closeDate) < new Date())
 
     const trendingCampaigns = campaigns.filter((campaign) => {
         const dateLaunched = new Date(campaign.createdAt) 
@@ -146,28 +138,6 @@ export default function HomePage({campaigns, setCampaigns}) {
                     ))}
                 </div>
                 <MdChevronRight className="arrow" onClick={() => slideRight(closingSoonRef)} />
-            </div>
-
-            <h3 className="category">Closed Campaigns</h3>
-            <div className="campaign-list-container">
-                <MdChevronLeft className="arrow" onClick={() => slideLeft(closedCampaignsRef)} />
-                <div ref={closedCampaignsRef} className={`campaign-horizontal-scroll ${centerClosedCampaigns ? 'center-contents' : ''}`}>
-                    {closedCampaigns.map((campaign, idx) => (
-                        <Campaign campaign={campaign} key={idx} />
-                    ))}
-                </div>
-                <MdChevronRight className="arrow" onClick={() => slideRight(closedCampaignsRef)} />
-            </div>
-
-            <h3 className="category">All Campaigns</h3>
-            <div className="campaign-list-container">
-                <MdChevronLeft className="arrow" onClick={() => slideLeft(allCampaignRef)} />
-                <div ref={allCampaignRef} className={`campaign-horizontal-scroll ${centerAllCampaigns ? 'center-contents' : ''}`}>
-                    {campaigns.map((campaign, idx) => (
-                        <Campaign campaign={campaign} key={idx} />
-                    ))}
-                </div>
-                <MdChevronRight className="arrow" onClick={() => slideRight(allCampaignRef)} />
             </div>
         </>
     )
