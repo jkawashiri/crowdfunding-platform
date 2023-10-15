@@ -110,7 +110,7 @@ export default function HomePage({campaigns, setCampaigns}) {
                     </div>
                     <div className="stat-container">
                         <div className="stat">{totalContributions}</div>
-                        <div className="stat-tag">contributions towards projects</div>
+                        <div className="stat-tag">contributions</div>
                     </div>
                 </div>
             </div>
