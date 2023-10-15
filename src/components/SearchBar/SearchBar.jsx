@@ -38,7 +38,7 @@ export default function SearchBar() {
             width: "100%"
         },
         collapsed: {
-            height: "100%",
+            height: "120%",
             width: "100%"
         }
     }

@@ -83,8 +83,38 @@ export default function HomePage({campaigns, setCampaigns}) {
 
         return dateLaunched >= twoWeeksAgo && percentageToGoal >= 30 && new Date(campaign.closeDate) > new Date()
     })
+
+    let totalRaised = 0
+    campaigns.forEach((campaign) => {
+        totalRaised += campaign.moneyRaised
+    })
+
+    let totalContributions = 0
+    campaigns.forEach((campaign) => {
+        const numberOfContributions = campaign.contributions
+        totalContributions += numberOfContributions.length
+    })
     return (
         <>
+            <div className="home-intro">
+                <div style={{fontSize:"28px", marginBottom:"40px"}}>A world powered by people.</div>
+                <div style={{color:"gray", fontSize:"1.5vmin"}}>ON JUMPSTARTER:</div>
+                <div className="stats-container">
+                    <div className="stat-container">
+                        <div className="stat">{campaigns.length}</div>
+                        <div className="stat-tag">projects funded</div>
+                    </div>
+                    <div className="stat-container middle-container">
+                        <div className="stat">${totalRaised.toLocaleString()}</div>
+                        <div className="stat-tag">raised to date</div>
+                    </div>
+                    <div className="stat-container">
+                        <div className="stat">{totalContributions}</div>
+                        <div className="stat-tag">contributions towards projects</div>
+                    </div>
+                </div>
+            </div>
+
             <h3 className="category">Trending Campaigns</h3>
             <div className="campaign-list-container">
                 <MdChevronLeft className="arrow" onClick={() => slideLeft(trendingRef)} />
