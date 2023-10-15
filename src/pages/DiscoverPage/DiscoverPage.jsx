@@ -3,9 +3,19 @@ import * as campaignsAPI from '../../utilities/campaigns-api'
 import { useState, useEffect } from "react"
 import './DiscoverPage.css'
 import { Link } from "react-router-dom"
+import { MdArrowDropDown } from "react-icons/md"
+import { useClickOutside } from "react-click-outside-hook"
 
 export default function DiscoverPage({campaigns, setCampaigns}) {
     const [selectedCategory, setSelectedCategory] = useState('All')
+    const [clickedDropdown, setClickedDropdown] = useState(false)
+    const [ref, isClickedOutside] = useClickOutside()
+
+    useEffect(function() {
+        if(isClickedOutside) {
+            setClickedDropdown(false)
+        }
+    }, [isClickedOutside])
 
     useEffect(function() {
         async function getCampaigns() {
@@ -18,6 +28,10 @@ export default function DiscoverPage({campaigns, setCampaigns}) {
     useEffect(() => {
         window.scrollTo(0,0)
     }, [])
+
+    function handleClickDropdown() {
+        setClickedDropdown(clickedDropdown => !clickedDropdown)
+    }
 
     function onAllClick() {
         setSelectedCategory('All')
@@ -60,20 +74,33 @@ export default function DiscoverPage({campaigns, setCampaigns}) {
     return (
         <>
             <div className="discover-header">
-                <div class="dropdown"> 
-                    <button class="dropbtn">
-                        <span>Categories</span>
+                <div class="dropdown" ref={ref}> 
+                    <button class="dropbtn" onClick={handleClickDropdown}>
+                        <div style={{fontSize:"2vmin"}}>{selectedCategory}</div>
+                        <MdArrowDropDown 
+                            style={{
+                                height:"3vmin", 
+                                width:"3vmin",
+                                transform:`rotate(${clickedDropdown ? 180 : 0}deg)`,
+                                transition:"transform 0.3s ease"
+                            }} 
+                        />
                     </button>
-                    <div class="dropdown-content">
-                        <Link onClick={onAllClick}>All Campaigns</Link>
-                        <Link onClick={onClosedClick}>Closed Campaigns</Link>
-                        <Link onClick={onTechClick}>Technology</Link>
-                        <Link onClick={onCreativeClick}>Creative</Link>
-                        <Link onClick={onEcommerceClick}>Ecommerce</Link>
-                    </div>
+                    { clickedDropdown ?
+                        <div class="dropdown-content">
+                            <Link onClick={onAllClick} style={{fontSize:"1.8vmin"}}>All Campaigns</Link>
+                            <Link onClick={onClosedClick} style={{fontSize:"1.8vmin"}}>Closed Campaigns</Link>
+                            <Link onClick={onTechClick} style={{fontSize:"1.8vmin"}}>Technology</Link>
+                            <Link onClick={onCreativeClick} style={{fontSize:"1.8vmin"}}>Creative</Link>
+                            <Link onClick={onEcommerceClick} style={{fontSize:"1.8vmin", borderBottom:"none"}}>Ecommerce</Link>
+                        </div>
+                    :
+                        null
+                    }
                 </div>
 
                 <h1>Explore Campaigns</h1>
+                <h2>{selectedCategory} Campaigns</h2>
             </div>
 
             <div className="discover-container">
