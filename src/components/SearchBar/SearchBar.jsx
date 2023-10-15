@@ -98,7 +98,7 @@ export default function SearchBar() {
                     className="search-container"
                 >
                     <div className="search-bar">
-                        <MdSearch size={20} style={{color:"gray"}} />
+                        <MdSearch size={20} style={{color:"gray", marginLeft:"10px"}} />
                         <input className="search-input" type="text" placeholder="Search for Campaigns" value={search} onChange={onChange} onFocus={expandContainer} />
                         <Link onClick={() => {onClick(); collapseContainer();}}><MdOutlineClose className="close-icon" /></Link>
                     </div>

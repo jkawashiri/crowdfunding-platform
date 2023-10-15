@@ -9,7 +9,7 @@ export default function NavBar({user, setUser}) {
         setUser(null)
     }
     return (
-        <div>
+        <div className="navbar-container">
             <nav className="navbar">
                 <div className="navbar-section">
                     <Link to="/">

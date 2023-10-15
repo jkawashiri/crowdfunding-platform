@@ -9,10 +9,9 @@ import { motion } from "framer-motion"
 export default function CampaignInfo({campaign, addComment, deleteComment, addUpdate, user, formattedDate, formattedRaiseGoal}) {
     const [selectedTab, setSelectedTab] = useState('overview')
     return (
-        <>
         <div className="window-container">
             <div className="window">
-                <nav>
+                <nav className="campaign-info-nav">
                     <motion.div layout>
                         <Link 
                             to={`overview`} 
@@ -58,6 +57,5 @@ export default function CampaignInfo({campaign, addComment, deleteComment, addUp
                 </Routes>
             </div>
         </div>
-        </>
     )
 }

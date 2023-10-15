@@ -1,6 +1,6 @@
 .window {
     width: 100vmin;
-    height: 50vmin;
+    height: 100%;
 }
 
 .window-container {
@@ -50,4 +50,11 @@ div > a:hover {
     height: 44px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+}
+
+.campaign-info-nav {
+    position: sticky;
+    top: 71px;
+    z-index: 1000;
+    background-color: white;
 }

@@ -15,6 +15,10 @@ export default function DiscoverPage({campaigns, setCampaigns}) {
         getCampaigns()
     }, [])
 
+    useEffect(() => {
+        window.scrollTo(0,0)
+    }, [])
+
     function onAllClick() {
         setSelectedCategory('All')
     }
