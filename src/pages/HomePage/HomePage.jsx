@@ -3,6 +3,7 @@ import * as campaignsAPI from '../../utilities/campaigns-api';
 import { useState, useEffect, useRef } from "react";
 import './HomePage.css'
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function HomePage({campaigns, setCampaigns}) {
     const [centerTrending, setCenterTrending] = useState(false)
@@ -139,6 +140,8 @@ export default function HomePage({campaigns, setCampaigns}) {
                 </div>
                 <MdChevronRight className="arrow" onClick={() => slideRight(closingSoonRef)} />
             </div>
+
+            <Link to="/discover"><button>Explore More Campaigns</button></Link>
         </>
     )
 }

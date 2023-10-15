@@ -56,7 +56,7 @@ export default function DiscoverPage({campaigns, setCampaigns}) {
     return (
         <>
             <div className="discover-header">
-                <div class="dropdown">
+                <div class="dropdown"> 
                     <button class="dropbtn">
                         <span>Categories</span>
                     </button>
@@ -81,7 +81,8 @@ export default function DiscoverPage({campaigns, setCampaigns}) {
                     </div>
                 :
                     <div style={{fontSize:"3vmin"}}>
-                        No results found for <span style={{color:"#5271FF", fontWeight:"bold"}}>{selectedCategory}</span></div>
+                        No results found for <span style={{color:"#5271FF", fontWeight:"bold"}}>{selectedCategory}</span>
+                    </div>
                 }
             </div>
         </>
