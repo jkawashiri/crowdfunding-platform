@@ -17,6 +17,7 @@ export default function NavBar({user, setUser}) {
                             <img src="https://i.imgur.com/g6fWUcj.png" alt="" height="200" width="200" style={{pointerEvents: 'none'}} />
                         </div>
                     </Link>
+                    <Link to="/discover">Discover</Link>
                     <Link to={user ? "/campaigns/new" : "/auth"}>Create a Campaign</Link>
                 </div>
                 <div className="navbar-section">

@@ -55,6 +55,7 @@ const campaignSchema = new Schema({
     contributions: {type: [contributionSchema]},
     comments: {type: [commentSchema]},
     updates: {type: [updateSchema]},
+    category: {type: String, required: true, default: 'none'},
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

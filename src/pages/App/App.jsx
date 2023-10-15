@@ -9,6 +9,7 @@ import { Routes, Route } from 'react-router-dom';
 import { getUser } from '../../utilities/users-service';
 import * as campaignsAPI from '../../utilities/campaigns-api';
 import EditCampaignPage from '../EditCampaignPage/EditCampaignPage';
+import DiscoverPage from '../DiscoverPage/DiscoverPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser())
@@ -30,6 +31,7 @@ export default function App() {
           <Routes>
             <Route path="/auth" element={<AuthPage setUser={setUser} />} />
             <Route path="/" element={<HomePage campaigns={campaigns} setCampaigns={setCampaigns} />} />
+            <Route path="/discover" element={<DiscoverPage campaigns={campaigns} setCampaigns={setCampaigns} />} />
             <Route path="/campaigns/new" element={<NewCampaignPage campaigns={campaigns} setCampaigns={setCampaigns} />} />
             <Route path="/campaigns/:id/*" element={<CampaignPage user={user} deleteCampaign={deleteCampaign} />} />
             <Route path="/campaigns/:id/edit" element={<EditCampaignPage editCampaign={editCampaign} />} />
