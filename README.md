@@ -17,7 +17,7 @@ Campaign page:
 - JavaScript
 - HTML
 - CSS
-- Framer Motion
+- Framer 
 
 # Getting Started
 Click [here](https://crowdfunding-platform-ea85ecccd233.herokuapp.com/) to navigate to the application.
