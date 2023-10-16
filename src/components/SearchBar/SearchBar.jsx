@@ -74,7 +74,7 @@ export default function SearchBar() {
 
         if (!query || query.trim() === '') return
         try {
-            const response = await fetch(`http://localhost:3001/search?q=${query}`)
+            const response = await fetch(`/search?q=${query}`)
             const data = await response.json()
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`)
