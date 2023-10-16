@@ -71,9 +71,11 @@ export default function SearchBar() {
     }
 
     async function fetchSearchResults(query) {
+        const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "http://localhost:3001";
+
         if (!query || query.trim() === '') return
         try {
-            const response = await fetch(`http://localhost:3001/search?q=${query}`)
+            const response = await fetch(`${BACKEND_URL}/search?q=${query}`)
             const data = await response.json()
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`)
