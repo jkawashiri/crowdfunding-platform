@@ -20,7 +20,7 @@ Campaign page:
 - Framer 
 
 # Getting Started
-Click [here](https://crowdfunding-platform-ea85ecccd233.herokuapp.com/) to navigate to the application.
+Click [here](https://crowdfunding-platform-clone-6dc4ac125825.herokuapp.com/) to navigate to the application.
 
 # Future Enhancements
 - Add the ability for campaign creators to add perks or rewards so other people have an incentive to contribute to their campaign.
