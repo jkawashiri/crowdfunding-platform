@@ -5,6 +5,7 @@ import './HomePage.css'
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useTypingEffect } from "../../hooks/typingEffect";
+import CountUp from "react-countup";
 
 export default function HomePage({campaigns, setCampaigns}) {
     const [centerTrending, setCenterTrending] = useState(false)
@@ -99,15 +100,15 @@ export default function HomePage({campaigns, setCampaigns}) {
                 <div style={{color:"gray", fontSize:"1.5vmin"}}>ON JUMPSTARTER:</div>
                 <div className="stats-container">
                     <div className="stat-container">
-                        <div className="stat">{campaigns.length}</div>
+                        <CountUp duration={3} className="stat" end={campaigns.length} />
                         <div className="stat-tag">projects funded</div>
                     </div>
                     <div className="stat-container middle-container">
-                        <div className="stat">${totalRaised.toLocaleString()}</div>
+                        <div className="stat">$<CountUp duration={3} end={totalRaised} /></div>
                         <div className="stat-tag">raised to date</div>
                     </div>
                     <div className="stat-container">
-                        <div className="stat">{totalContributions}</div>
+                        <CountUp duration={3} className="stat" end={totalContributions} />
                         <div className="stat-tag">contributions</div>
                     </div>
                 </div>
