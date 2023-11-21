@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import './HomePage.css'
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { useTypingEffect } from "../../hooks/typingEffect";
 
 export default function HomePage({campaigns, setCampaigns}) {
     const [centerTrending, setCenterTrending] = useState(false)
@@ -87,10 +88,14 @@ export default function HomePage({campaigns, setCampaigns}) {
         const numberOfContributions = campaign.contributions
         totalContributions += numberOfContributions.length
     })
+
+    const { text, isTypingComplete } = useTypingEffect('A world powered by people.', 150)
     return (
         <>
             <div className="home-intro">
-                <div style={{fontSize:"28px", marginBottom:"40px"}}>A world powered by people.</div>
+                <div style={{fontSize:"28px", marginBottom:"40px", height:"5vh"}}>
+                    {text}{!isTypingComplete && '|'}
+                </div>
                 <div style={{color:"gray", fontSize:"1.5vmin"}}>ON JUMPSTARTER:</div>
                 <div className="stats-container">
                     <div className="stat-container">
